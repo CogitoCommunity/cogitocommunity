@@ -1,3 +1,76 @@
-baseURL = 'https://example.org/'
-locale = 'en-us'
-title = 'My New Hugo Project'
+baseURL = 'https://cogitocommunity.github.io/'
+languageCode = 'en-us'
+title = 'CogitoCommunity'
+theme = 'PaperMod'
+
+[params]
+  # Brand Identity
+  description = "Bilingual student publication fostering intellectual discourse"
+  author = "CogitoCommunity Team"
+  
+  # Visual Identity - Forest Green & Gold
+  defaultTheme = "light"
+  
+  # Homepage Settings
+  homeInfoParams.Title = "Cogito"
+  homeInfoParams.Content = """
+  **Active Creation > Passive Consumption**
+  
+  A student-led publication covering Biology, Philosophy, Public Speaking, and beyond.
+  """
+  
+  # Show article reading time
+  ShowReadingTime = true
+  
+  # Show breadcrumb navigation
+  ShowBreadCrumbs = true
+  
+  # Show code copy button
+  ShowCodeCopyButtons = true
+  
+  # Show post navigation (prev/next)
+  ShowPostNavLinks = true
+  
+  # Enable search
+  ShowShareButtons = false  # Disable for now, can enable later
+
+# Main Menu (top navigation)
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Articles"
+  url = "/articles/"
+  weight = 2
+
+[[menu.main]]
+  name = "Clubs"
+  url = "/clubs/"
+  weight = 3
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 4
+
+[[menu.main]]
+  name = "Submit"
+  url = "/submit/"
+  weight = 5
+
+# Taxonomies (categories and tags)
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  club = "clubs"
+
+# Output formats (enables RSS feed)
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# Markup configuration (for better code highlighting)
+[markup]
+  [markup.highlight]
+    style = 'monokai'
