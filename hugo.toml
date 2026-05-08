@@ -7,7 +7,8 @@ googleAnalytics = "G-299ZRXC3F2"
 [params]
   sticky = true
   # Homepage Settings
-  [params.profileMode]  
+  [params.profileMode]
+    enabled = false
 
   title = "CogitoCommunity"
   subtitle = "Bilingual student publication fostering intellectual discourse through Biology, Philosophy, and Public Speaking"

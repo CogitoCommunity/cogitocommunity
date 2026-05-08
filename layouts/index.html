@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+<div class="homepage-hero-compact">
+  <div class="hero-content">
+    <h1 class="text-center">{{ .Site.Title }}</h1>
+    {{ with .Site.Params.subtitle }}
+    <p class="hero-subtitle text-center">{{ . }}</p>
+    {{ end }}
+    <div class="hero-buttons flex-center">
+      <a href="/articles/" class="button">Explore Articles</a>
+      <a href="/about/" class="button">About Us</a>
+      <a href="/submit/" class="button">Submit Your Work</a>
+    </div>
+  </div>
+</div>
+
+{{/* Sorting explicitly by Date to ensure the newest is first */}}
+{{ $pages := (where .Site.RegularPages "Section" "in" (slice "articles" "biology" "philosophy")).ByDate.Reverse }}
+
+<section class="featured-section-container">
+  {{ range first 1 $pages }}
+    <article class="featured-card-large">
+      {{ if .Params.cover.image }}
+        <div class="featured-image">
+          <img src="{{ .Params.cover.image | absURL }}" alt="{{ .Title }}">
+        </div>
+      {{ end }}
+      <div class="featured-content">
+        <span class="label">Latest Release</span>
+        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <p>{{ .Summary | truncate 200 }}</p>
+        <a href="{{ .Permalink }}" class="read-more">Read Full Article →</a>
+      </div>
+    </article>
+  {{ end }}
+</section>
+
+<section class="article-grid-container">
+  <div class="article-grid">
+    {{ range first 6 (after 1 $pages) }}
+        <article class="article-card">
+          {{/* 1. Title First */}}
+          <h3 class="card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+          
+          {{/* 2. Club Minimized Underneath */}}
+          {{ with .Params.clubs }}
+            <div class="article-meta-minimized">
+              {{ if reflect.IsSlice . }}{{ range . }}<span class="club-badge-small">{{ . }}</span>{{ end }}
+              {{ else }}<span class="club-badge-small">{{ . }}</span>{{ end }}
+            </div>
+          {{ end }}
+
+          {{/* 3. Description Underneath */}}
+          <p class="article-excerpt">{{ .Summary | truncate 90 }}</p>
+          
+          <div class="article-footer">
+            <span>{{ .ReadingTime }} min read</span>
+            <a href="{{ .Permalink }}">Read →</a>
+          </div>
+        </article>
+    {{ end }}
+  </div>
+</section>
+
+{{ end }}

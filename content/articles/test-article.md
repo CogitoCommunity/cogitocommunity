@@ -6,6 +6,9 @@ categories: ["Philosophy"]
 clubs: ["Philosophy Club"]
 tags: ["announcement", "student-led"]
 description: "Launching a new era of student intellectual discourse"
+cover:
+  image: "/images/learning-pyramid2.png"
+  alt: "A learning pyramid"
 ---
 
 ## Active Creation > Passive Consumption
