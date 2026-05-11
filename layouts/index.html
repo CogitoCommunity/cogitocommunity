@@ -61,5 +61,10 @@
     {{ end }}
   </div>
 </section>
+<br>
+<br>
 
+  <div class="newslettter">
+    {{ (printf "{{< newsletter >}}" ) | .Page.RenderString }}
+  </div>
 {{ end }}
