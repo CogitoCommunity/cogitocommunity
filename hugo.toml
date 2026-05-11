@@ -4,47 +4,38 @@ title = 'CogitoCommunity'
 theme = 'PaperMod'
 googleAnalytics = "G-299ZRXC3F2"
 
-
-
 [params]
   sticky = true
-
   ShowSearchPage = true
+  ShowToc = true
+  ShowReadingTime = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowPostNavLinks = true
+
+  # Enable search
+  ShowShareButtons = true
 
   # Homepage Settings
   [params.profileMode]
     enabled = false
+    title = "CogitoCommunity"
+    subtitle = "Bilingual student publication fostering intellectual discourse through Biology, Philosophy, and Public Speaking"
 
-  title = "CogitoCommunity"
-  subtitle = "Bilingual student publication fostering intellectual discourse through Biology, Philosophy, and Public Speaking"
+    [[params.profileMode.buttons]]
+      name = "Read Articles"
+      url = "/articles/"
 
-  [[params.profileMode.buttons]]
-    name = "Read Articles"
-    url = "/articles/"
+    [[params.profileMode.buttons]]
+      name = "Submit Article"
+      url = "/submit/"
 
-  [[params.profileMode.buttons]]
-    name = "Submit Article"
-    url = "/submit/"
-    
   [[params.socialIcons]]
     name = "Instagram"
     url = "https://www.instagram.com/cogitocommunity/"
 
-  # Show article reading time
-  ShowReadingTime = true
-  
-  # Show breadcrumb navigation
-  ShowBreadCrumbs = true
-  
-  # Show code copy button
-  ShowCodeCopyButtons = true
-  
-  # Show post navigation (prev/next)
-  ShowPostNavLinks = true
-  
-  # Enable search
-  ShowShareButtons = true  # Disable for now, can enable later
-
+  [params.share]
+    allowedPlatforms = ["instagram"]
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
@@ -85,7 +76,6 @@ googleAnalytics = "G-299ZRXC3F2"
   category = "categories"
   tag = "tags"
   club = "clubs"
-
 
 # Markup configuration (for better code highlighting)
 [markup]
