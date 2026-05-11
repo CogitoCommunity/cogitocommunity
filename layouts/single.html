@@ -58,6 +58,7 @@
     {{- partial "share_icons.html" . -}}
     {{- end }}
   </footer>
+
    <section class="related-articles">
     <h3>Recommended Reading</h3>
     <div class="related-grid">
@@ -83,6 +84,7 @@
       {{ end }}
     </div>
   </section>
+
   {{- if (.Param "comments") }}
   {{- partial "comments.html" . }}
   {{- end }}
