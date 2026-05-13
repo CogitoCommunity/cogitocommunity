@@ -1,49 +1,53 @@
 /* ============================================================
    COGITOCOMMUNITY CUSTOM STYLES
+   Extends PaperMod theme with brand identity and custom layouts
    Last Updated: May 2026
    ============================================================ */
 
 /* ============================================================
-   # TYPOGRAPHY IMPORTS
+   # CSS VARIABLES & DESIGN TOKENS
+   Uses PaperMod-compatible variable names for dark mode support
    ============================================================ */
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
 
-/* ============================================================
-   # CSS VARIABLES - COLOR SYSTEM
-   ============================================================ */
 :root {
-  /* Primary Colors */
-  --primary-green: #1B5E20;
-  --primary-green-dark: #144716;
-  --primary-green-light: #2E7D32;
+  /* ===== PaperMod Core Variables (Required for Theme Switching) ===== */
+  --theme: #FAFAF8;              /* Page background */
+  --entry: #FFFFFF;              /* Card backgrounds */
+  --primary: #1B5E20;            /* Forest green - main accent */
+  --content: #1A1A1A;            /* Body text */
+  --secondary: #4A4A4A;          /* Secondary text */
+  --tertiary: #6B6B6B;           /* Muted text */
+  --border: #E0E0E0;             /* Borders */
+  --code-bg: #F5F5F5;            /* Inline code background */
   
-  /* Accent Colors */
-  --gold: #C9972B;
-  --gold-dark: #B8862A;
-  --gold-light: #D4A842;
+  /* ===== Brand Color Shades (For Hover States & Variations) ===== */
+  --primary-dark: #144716;       /* Darker green for footer, hover */
+  --primary-light: #2E7D32;      /* Lighter green for accents */
+  --accent: #C9972B;             /* Gold - secondary accent */
+  --accent-dark: #B8862A;        /* Darker gold */
+  --accent-light: #D4A842;       /* Lighter gold */
   
-  /* Neutral Colors */
-  --background: #FAFAF8;
-  --surface: #FFFFFF;
-  --text-primary: #1A1A1A;
-  --text-secondary: #4A4A4A;
-  --text-tertiary: #6B6B6B;
-  --border: #E0E0E0;
-  --border-light: #F0F0F0;
+  /* ===== Spacing Scale (Consistent Rhythm) ===== */
+  --space-xs: 0.5rem;            /* 8px */
+  --space-sm: 1rem;              /* 16px */
+  --space-md: 1.5rem;            /* 24px */
+  --space-lg: 2.5rem;            /* 40px */
+  --space-xl: 4rem;              /* 64px */
   
-  /* Spacing Scale */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2.5rem;
-  --space-xl: 4rem;
+  /* ===== Border Radius System ===== */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
   
-  /* Shadows */
+  /* ===== Shadows (Elevation System) ===== */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
   
-  /* Transitions */
+  /* ===== Transitions (Consistent Timing) ===== */
   --transition-fast: 0.15s ease;
   --transition-base: 0.2s ease;
   --transition-slow: 0.3s ease;
@@ -52,58 +56,62 @@
 /* ============================================================
    # BASE TYPOGRAPHY
    ============================================================ */
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1.125rem;
+  font-size: 1.125rem;          /* 18px base size */
   line-height: 1.7;
-  color: var(--text-primary);
-  background-color: var(--background);
+  color: var(--content);
+  background-color: var(--theme);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   line-height: 1.3;
-  color: var(--primary-green-dark);
+  color: var(--primary-dark);
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.5rem;            /* 40px */
   margin-bottom: var(--space-md);
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2rem;              /* 32px */
   margin-top: var(--space-lg);
   margin-bottom: var(--space-sm);
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.5rem;            /* 24px */
   margin-top: var(--space-md);
   margin-bottom: var(--space-sm);
 }
 
 h4 {
-  font-size: 1.25rem;
+  font-size: 1.25rem;           /* 20px */
 }
 
+/* Selection color (when user highlights text) */
 ::selection {
-  background-color: rgba(201, 151, 43, 0.2); /* Soft transparent gold */
-  color: var(--text-primary);
+  background-color: rgba(201, 151, 43, 0.2);
+  color: var(--content);
 }
+
 /* ============================================================
    # HEADER & NAVIGATION
    ============================================================ */
+
 .top-link,
 .nav a {
-  color: var(--primary-green) !important;
+  color: var(--primary) !important;
   font-weight: 500;
   transition: color var(--transition-base);
 }
 
 .nav a:hover {
-  color: var(--gold) !important;
+  color: var(--accent) !important;
 }
 
 .nav a {
@@ -111,7 +119,7 @@ h4 {
   padding: var(--space-xs) var(--space-sm);
 }
 
-/* Active navigation state */
+/* Active page indicator (underline) */
 .nav a.active::after {
   content: '';
   position: absolute;
@@ -120,112 +128,308 @@ h4 {
   transform: translateX(-50%);
   width: 60%;
   height: 2px;
-  background: var(--gold);
+  background: var(--accent);
 }
 
 .logo a {
   font-weight: 700;
-  color: var(--primary-green) !important;
+  color: var(--primary) !important;
   font-size: 1.5rem;
   letter-spacing: -0.02em;
 }
 
 /* ============================================================
-   # LINKS
+   # HOMEPAGE LAYOUTS
+   Floating decorative icons + stats + club feature cards
    ============================================================ */
-a {
-  color: var(--primary-green);
-  text-decoration: none;
-  transition: color var(--transition-base);
+
+/* Hero Section with Floating Icons */
+.homepage-hero-compact {
+  position: relative;
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+  background: linear-gradient(to bottom, var(--border), var(--theme));
+  margin-bottom: var(--space-xl);
+  border-radius: var(--radius-xl);
+  overflow: hidden;              /* Clips floating icons if they exceed bounds */
 }
 
-a:hover {
-  color: var(--gold);
+/* Floating decorative icons (DNA, philosopher bust, podium, etc.) */
+.hero-icon {
+  position: absolute;
+  opacity: 0.15;                 /* Subtle, behind text */
+  pointer-events: none;          /* Don't interfere with clicks */
+  z-index: 0;
 }
 
-.post-content a,
-.entry-content a {
-  color: var(--primary-green);
-  border-bottom: 1px solid var(--primary-green-light);
-  transition: all var(--transition-base);
+.hero-icon.top-left {
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
 }
 
-.post-content a:hover,
-.entry-content a:hover {
-  color: var(--gold);
-  border-bottom-color: var(--gold);
+.hero-icon.top-right {
+  top: 20px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
 }
 
-/* ============================================================
-   # ARTICLE CARDS (List View)
-   ============================================================ */
-.post-entry {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: var(--space-md);
-  margin-bottom: var(--space-md);
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow-sm);
+.hero-icon.bottom-left {
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
 }
 
-.post-entry:hover {
+.hero-icon.bottom-right {
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+}
+
+/* Hero text content (stays above floating icons) */
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--secondary);
+  max-width: 700px;
+  margin: var(--space-sm) auto var(--space-md);
+}
+
+/* Stats bar (3 Clubs | 12 Articles | Bilingual) */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+  color: var(--secondary);
+}
+
+.hero-stats div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-stats strong {
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+/* Club Feature Cards (3-column grid below hero) */
+.clubs-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.club-feature-card {
+  background: var(--entry);
+  padding: var(--space-lg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: transform var(--transition-base), 
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.club-feature-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
   box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
-  border-color: var(--primary-green-light);
 }
 
-.post-entry-header {
+.club-icon {
+  font-size: 3rem;              /* Large emoji/icon */
   margin-bottom: var(--space-sm);
 }
 
-.entry-header h2 {
+.club-feature-card h3 {
+  color: var(--primary);
   margin-top: 0;
   margin-bottom: var(--space-xs);
 }
 
+.club-feature-card p {
+  font-size: 0.9rem;
+  color: var(--secondary);
+  margin-bottom: var(--space-md);
+  line-height: 1.6;
+}
 
-/* ============================================================
-   # CLUB BADGES
-   ============================================================ */
-.post-meta .club-badge,
-.clubs-list .club-badge {
+.club-feature-card .button {
   display: inline-block;
-  background: var(--primary-green);
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+}
+
+/* Featured Article Section */
+.featured-section-container {
+  max-width: 1000px;
+  margin: var(--space-lg) auto;
+  padding: 0 var(--space-md);
+}
+
+.featured-card-large {
+  border: 2px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: transform var(--transition-base), 
+              box-shadow var(--transition-base), 
+              border-color var(--transition-base);
+}
+
+.featured-card-large:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+
+.featured-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.featured-content {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.featured-content .label {
+  display: inline-block;
+  background: var(--accent);
   color: white;
-  padding: 3px 10px;
-  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
   font-size: 0.75rem;
-  font-weight: 600;
-  margin-right: var(--space-xs);
-  letter-spacing: 0.02em;
+  font-weight: 700;
   text-transform: uppercase;
-  transition: background var(--transition-base);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+  width: fit-content;
 }
 
-.club-badge:hover {
-  background: var(--gold);
+.featured-content h2 {
+  margin-top: 0;
 }
 
-/* Club-specific badge colors (optional) */
-.club-badge.biology {
-  background: #2E7D32;
+.featured-content .read-more {
+  color: var(--primary);
+  font-weight: 600;
+  margin-top: var(--space-sm);
+  display: inline-block;
 }
 
-.club-badge.philosophy {
-  background: #5D4037;
+.featured-content .read-more:hover {
+  color: var(--accent);
 }
 
-.club-badge.public-speaking {
-  background: #1565C0;
+/* Article Grid (3 columns) */
+.article-grid-container {
+  margin: var(--space-xl) 0;
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.article-card {
+  background: var(--entry);
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), 
+              box-shadow var(--transition-base),
+              border-color var(--transition-base);
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+
+.card-title {
+  margin-bottom: 0.25rem;
+  font-size: 1.4rem;
+  margin-top: 0;
+}
+
+.article-meta-minimized {
+  margin-bottom: var(--space-sm);
+}
+
+.article-excerpt {
+  font-size: 0.95rem;
+  color: var(--secondary);
+  flex-grow: 1;
+  margin: var(--space-sm) 0;
+}
+
+.article-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--tertiary);
+}
+
+.article-footer a {
+  color: var(--primary);
+  font-weight: 600;
+  border-bottom: none;
 }
 
 /* ============================================================
-   # ARTICLE SINGLE PAGE
+   # ARTICLE COMPONENTS
+   List view cards & single article pages
    ============================================================ */
+
+/* Article Cards (List View - /articles/ page) */
+.post-entry {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), 
+              box-shadow var(--transition-base),
+              border-color var(--transition-base);
+}
+
+.post-entry:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+/* Single Article Page */
 .post-single {
-  background: var(--surface);
-  border-radius: 8px;
+  background: var(--entry);
+  border-radius: var(--radius-lg);
   padding: var(--space-lg);
   box-shadow: var(--shadow-sm);
 }
@@ -233,11 +437,11 @@ a:hover {
 .post-single .post-header {
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-md);
-  border-bottom: 2px solid var(--border-light);
+  border-bottom: 2px solid var(--border);
 }
 
 .post-single .post-title {
-  color: var(--primary-green-dark);
+  color: var(--primary-dark);
   margin-bottom: var(--space-sm);
 }
 
@@ -252,10 +456,16 @@ a:hover {
   margin-bottom: var(--space-md);
 }
 
+/* Related Articles Section (Bottom of Single Article) */
 .related-articles {
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 2px solid var(--border);
+}
+
+.related-articles h3 {
+  color: var(--primary);
+  margin-top: 0;
 }
 
 .related-grid {
@@ -267,170 +477,224 @@ a:hover {
 .related-card {
   background: var(--entry);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
+  transition: transform var(--transition-base), 
+              box-shadow var(--transition-base);
+}
+
+.related-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.related-card h4 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.related-card h4 a {
+  color: var(--primary);
+  border-bottom: none;
+}
+
+.related-card p {
+  font-size: 0.9rem;
+  color: var(--secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.related-card .article-footer {
+  border-top: none;
+  padding-top: 0;
 }
 
 /* ============================================================
-   # BLOCKQUOTES & CODE
+   # INTERACTIVE ELEMENTS
+   Links, buttons, badges, tags
    ============================================================ */
-blockquote {
-  border-left: 4px solid var(--gold);
-  background: var(--background);
-  padding: var(--space-sm) var(--space-md);
-  margin: var(--space-md) 0;
-  font-style: italic;
-  color: var(--text-secondary);
-  border-radius: 0 4px 4px 0;
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-base);
 }
 
-blockquote p:last-child {
-  margin-bottom: 0;
+a:hover {
+  color: var(--accent);
 }
 
-.highlight {
-  border-left: 3px solid var(--primary-green);
-  border-radius: 4px;
-  margin: var(--space-md) 0;
-}
-
-code {
-  background: var(--background);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 0.9em;
-  color: var(--primary-green-dark);
-}
-
-pre code {
-  background: transparent;
-  padding: 0;
-}
-
-/* ============================================================
-   # TAGS & CATEGORIES
-   ============================================================ */
-.post-tags a,
-.terms-tags a {
-  background: var(--gold-light);
-  color: var(--text-primary);
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-right: var(--space-xs);
-  margin-bottom: var(--space-xs);
-  display: inline-block;
+.post-content a,
+.entry-content a {
+  color: var(--primary);
+  border-bottom: 1px solid var(--primary-light);
   transition: all var(--transition-base);
 }
 
-.post-tags a:hover,
-.terms-tags a:hover {
-  background: var(--gold);
-  color: white;
-  transform: translateY(-1px);
+.post-content a:hover,
+.entry-content a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
-/* ============================================================
-   # BUTTONS & CALLS TO ACTION
-   ============================================================ */
+/* Buttons */
 .button,
 button,
 input[type="submit"] {
-  background: var(--primary-green);
+  background: var(--primary);
   color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   border: none;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-base);
   box-shadow: var(--shadow-sm);
   font-size: 1rem;
+  display: inline-block;
 }
 
 .button:hover,
 button:hover,
 input[type="submit"]:hover {
-  background: var(--gold);
+  background: var(--accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  color: white;
 }
 
 .button.secondary {
-  background: var(--gold);
+  background: var(--accent);
 }
 
 .button.secondary:hover {
-  background: var(--gold-dark);
+  background: var(--accent-dark);
 }
 
-/* ============================================================
-   # NEWSLETTER SIGNUP FORM
-   ============================================================ */
-.newsletter-signup,
-#mlb2-40204861 .ml-form-embedWrapper {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
-  padding: var(--space-lg);
-  border-radius: 8px;
-  margin: var(--space-xl) 0;
-  border-left: 6px solid var(--gold);
-  box-shadow: var(--shadow-md);
+.hero-buttons {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.newsletter-signup h4 {
-  color: var(--primary-green-dark);
-  margin-bottom: var(--space-sm);
+/* Club Badges */
+.post-meta .club-badge,
+.clubs-list .club-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: var(--space-xs);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: background var(--transition-base);
 }
 
-.newsletter-signup input[type="email"],
-#mlb2-40204861 input[type="email"] {
-  padding: 0.875rem 1rem;
-  border: 2px solid var(--primary-green);
-  border-radius: 6px;
-  width: 100%;
-  max-width: 400px;
-  font-size: 1rem;
-  transition: all var(--transition-base);
-  background: var(--surface);
+.club-badge:hover {
+  background: var(--accent);
 }
 
-.newsletter-signup input[type="email"]:focus,
-#mlb2-40204861 input[type="email"]:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201, 151, 43, 0.1);
-}
-
-.newsletter-signup button,
-#mlb2-40204861 button[type="submit"] {
-  background: var(--primary-green) !important;
-  color: white !important;
-  padding: 0.875rem 2rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.club-badge-small {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--accent);
   font-weight: 700;
-  font-size: 1rem;
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow-sm);
+  letter-spacing: 0.05em;
 }
 
-.newsletter-signup button:hover,
-#mlb2-40204861 button[type="submit"]:hover {
-  background: var(--gold) !important;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+/* Tags */
+.post-tags a,
+.terms-tags a {
+  background: var(--accent-light);
+  color: var(--content);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-right: var(--space-xs);
+  margin-bottom: var(--space-xs);
+  display: inline-block;
+  transition: all var(--transition-base);
+  border-bottom: none;
+}
+
+.post-tags a:hover,
+.terms-tags a:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-1px);
 }
 
 /* ============================================================
-   # GOOGLE TRANSLATE WIDGET
+   # FORMS & NEWSLETTER
+   Input fields, MailerLite overrides, Google Translate
    ============================================================ */
+
+/* Form Inputs */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+textarea,
+select {
+  width: 100%;
+  padding: var(--space-sm);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: all var(--transition-base);
+  background: var(--entry);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-weight: 500;
+  color: var(--content);
+}
+
+/* Newsletter Signup (General Wrapper) */
+.newsletter-signup,
+.newslettter {
+  margin: var(--space-xl) 0;
+}
+
+/* MailerLite Form Overrides (What Actually Works) */
+#mlb2-40204861 .ml-form-embedWrapper {
+  background: linear-gradient(135deg, var(--entry) 0%, var(--theme) 100%) !important;
+  border-left: 6px solid var(--accent) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+#mlb2-40204861 input[type="email"]:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(201, 151, 43, 0.1) !important;
+}
+
+#mlb2-40204861 button[type="submit"]:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Google Translate Widget */
 #google_translate_element {
-  background: var(--surface);
+  background: var(--entry);
   padding: var(--space-xs) var(--space-sm);
-  border-radius: 6px;
-  border: 2px solid var(--primary-green);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--primary);
   display: inline-block;
   margin: var(--space-sm) 0;
   box-shadow: var(--shadow-sm);
@@ -439,7 +703,7 @@ input[type="submit"]:hover {
 #google_translate_element select {
   background: transparent;
   border: none;
-  color: var(--primary-green);
+  color: var(--primary);
   font-weight: 600;
   cursor: pointer;
   padding: 0.25rem;
@@ -462,62 +726,127 @@ body {
 }
 
 /* ============================================================
-   # BREADCRUMBS
+   # CONTENT FORMATTING
+   Blockquotes, code blocks, tables
    ============================================================ */
-.breadcrumbs {
-  font-size: 0.875rem;
-  color: var(--text-tertiary);
-  margin-bottom: var(--space-md);
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: var(--theme);
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-md) 0;
+  font-style: italic;
+  color: var(--secondary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
-.breadcrumbs a {
-  color: var(--text-secondary);
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code Blocks */
+.highlight {
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-sm);
+  margin: var(--space-md) 0;
+}
+
+code {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: var(--primary-dark);
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  background: var(--entry);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+th {
+  background: var(--primary);
+  color: white;
+  padding: var(--space-sm);
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+}
+
+tr:last-child td {
   border-bottom: none;
 }
 
-.breadcrumbs a:hover {
-  color: var(--primary-green);
+tr:hover {
+  background: var(--theme);
 }
 
 /* ============================================================
-   # POST NAVIGATION (Previous/Next)
+   # TAXONOMY & ARCHIVE PAGES
+   Category/tag listings, archive dates
    ============================================================ */
-.post-nav-links {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--space-lg);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--border);
+
+.archive-month {
+  color: var(--primary);
+  font-weight: 600;
 }
 
-.post-nav-links a {
-  color: var(--primary-green);
-  font-weight: 500;
-  padding: var(--space-sm) var(--space-md);
+.archive-year {
+  color: var(--secondary);
+}
+
+/* ============================================================
+   # SEARCH
+   Search result cards
+   ============================================================ */
+
+#searchResults {
+  margin-top: var(--space-md);
+}
+
+#searchResults .search-result {
+  background: var(--entry);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
   transition: all var(--transition-base);
 }
 
-.post-nav-links a:hover {
-  background: var(--primary-green);
-  color: white;
-  border-color: var(--primary-green);
+#searchResults .search-result:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
 }
 
 /* ============================================================
    # FOOTER
    ============================================================ */
+
 .footer {
-  background: var(--primary-green-dark);
-  color: var(--background);
+  background: var(--primary-dark);
+  color: var(--theme);
   padding: var(--space-lg) 0;
   margin-top: var(--space-xl);
   text-align: center;
 }
 
 .footer a {
-  color: var(--gold-light);
+  color: var(--accent-light);
   border-bottom: 1px solid transparent;
 }
 
@@ -527,107 +856,51 @@ body {
 }
 
 /* ============================================================
-   # ARCHIVE PAGE
+   # BREADCRUMBS & POST NAVIGATION
    ============================================================ */
-.archive-month {
-  color: var(--primary-green);
-  font-weight: 600;
+
+.breadcrumbs {
+  font-size: 0.875rem;
+  color: var(--tertiary);
+  margin-bottom: var(--space-md);
 }
 
-.archive-year {
-  color: var(--text-secondary);
-}
-
-/* ============================================================
-   # SEARCH
-   ============================================================ */
-#searchResults {
-  margin-top: var(--space-md);
-}
-
-#searchResults .search-result {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: var(--space-md);
-  margin-bottom: var(--space-sm);
-  transition: all var(--transition-base);
-}
-
-#searchResults .search-result:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary-green-light);
-}
-
-/* ============================================================
-   # TABLES
-   ============================================================ */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--space-md) 0;
-  background: var(--surface);
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-th {
-  background: var(--primary-green);
-  color: white;
-  padding: var(--space-sm);
-  text-align: left;
-  font-weight: 600;
-}
-
-td {
-  padding: var(--space-sm);
-  border-bottom: 1px solid var(--border-light);
-}
-
-tr:last-child td {
+.breadcrumbs a {
+  color: var(--secondary);
   border-bottom: none;
 }
 
-tr:hover {
-  background: var(--background);
+.breadcrumbs a:hover {
+  color: var(--primary);
 }
 
-/* ============================================================
-   # FORMS
-   ============================================================ */
-input[type="text"],
-input[type="email"],
-input[type="url"],
-textarea,
-select {
-  width: 100%;
-  padding: var(--space-sm);
-  border: 2px solid var(--border);
-  border-radius: 6px;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  transition: all var(--transition-base);
-  background: var(--surface);
+.post-nav-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: var(--primary-green);
-  box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
-}
-
-label {
-  display: block;
-  margin-bottom: var(--space-xs);
+.post-nav-links a {
+  color: var(--primary);
   font-weight: 500;
-  color: var(--text-primary);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.post-nav-links a:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
 }
 
 /* ============================================================
-   # RESPONSIVE DESIGN - TABLET
+   # RESPONSIVE DESIGN - TABLET (≤1024px)
    ============================================================ */
+
 @media screen and (max-width: 1024px) {
   h1 { font-size: 2.25rem; }
   h2 { font-size: 1.875rem; }
@@ -636,11 +909,27 @@ label {
   .post-single {
     padding: var(--space-md);
   }
+  
+  /* Article grid: 3 columns → 2 columns */
+  .article-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Related articles: 3 columns → 2 columns */
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Club cards: 3 columns → 2 columns */
+  .clubs-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ============================================================
-   # RESPONSIVE DESIGN - MOBILE
+   # RESPONSIVE DESIGN - MOBILE (≤768px)
    ============================================================ */
+
 @media screen and (max-width: 768px) {
   body {
     font-size: 1rem;
@@ -649,6 +938,22 @@ label {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.625rem; }
   h3 { font-size: 1.25rem; }
+  
+  /* Single column layouts */
+  .article-grid,
+  .related-grid,
+  .clubs-feature-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Featured card: image on top */
+  .featured-card-large {
+    grid-template-columns: 1fr;
+  }
+  
+  .featured-image img {
+    height: 200px;
+  }
   
   .post-single {
     padding: var(--space-sm);
@@ -659,20 +964,30 @@ label {
     font-size: 1rem;
   }
   
-  .newsletter-signup,
-  #mlb2-40204861 .ml-form-embedWrapper {
-    padding: var(--space-md);
-  }
-  
-  .newsletter-signup form {
+  /* Hero stats: stack vertically */
+  .hero-stats {
     flex-direction: column;
+    gap: var(--space-sm);
   }
   
-  .newsletter-signup input[type="email"],
-  .newsletter-signup button {
+  /* Hero buttons: stack vertically */
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-buttons .button {
     width: 100%;
-    max-width: 100%;
-    margin-bottom: var(--space-sm);
+    max-width: 300px;
+  }
+  
+  /* Hide floating icons on mobile (too cluttered) */
+  .hero-icon {
+    display: none;
+  }
+  
+  .homepage-hero-compact {
+    padding: var(--space-lg) var(--space-sm);
   }
   
   .nav {
@@ -683,19 +998,21 @@ label {
     padding: var(--space-sm);
   }
   
-  /* Mobile touch targets - minimum 44px */
+  /* Touch-friendly tap targets (min 44px) */
   button,
   .button,
   .nav a {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
   }
 }
 
 /* ============================================================
-   # RESPONSIVE DESIGN - SMALL MOBILE
+   # RESPONSIVE DESIGN - SMALL MOBILE (≤480px)
    ============================================================ */
+
 @media screen and (max-width: 480px) {
   :root {
     --space-lg: 2rem;
@@ -704,30 +1021,33 @@ label {
   
   h1 { font-size: 1.75rem; }
   
-  .post-tags a {
+  .post-tags a,
+  .club-badge {
     font-size: 0.8rem;
     padding: 3px 8px;
+  }
+  
+  .featured-content {
+    padding: var(--space-md);
   }
 }
 
 /* ============================================================
    # UTILITY CLASSES
    ============================================================ */
+
 .text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-
-.mt-sm { margin-top: var(--space-sm); }
-.mt-md { margin-top: var(--space-md); }
-.mt-lg { margin-top: var(--space-lg); }
-
-.mb-sm { margin-bottom: var(--space-sm); }
-.mb-md { margin-bottom: var(--space-md); }
-.mb-lg { margin-bottom: var(--space-lg); }
+.flex-center { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
 
 /* ============================================================
-   # PRINT STYLES
+   # FUTURE FEATURES (Currently Disabled)
    ============================================================ */
+
+/* Print Styles - Activate when needed */
 @media print {
   body {
     background: white;
@@ -746,220 +1066,4 @@ label {
     color: black;
     text-decoration: underline;
   }
-}
-
-/* ============================================================
-   # HOMEPAGE SPECIFIC LAYOUTS
-   ============================================================ */
-
-/* Hero Section */
-.homepage-hero {
-    padding: var(--space-xl) 0;
-    text-align: center;
-    background: linear-gradient(to bottom, var(--border-light), var(--background));
-    margin-bottom: var(--space-xl);
-    border-radius: 12px;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: var(--space-sm) auto var(--space-md);
-}
-
-.hero-buttons {
-    display: flex;
-    gap: var(--space-sm);
-    justify-content: center;
-}
-
-/* Grid: 3 Columns on Desktop/Laptop */
-.article-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important; /* Changed from 2 to 3 */
-    gap: var(--space-md);
-    margin-top: var(--space-md);
-}
-
-/* Responsive: 2 columns on tablets */
-@media screen and (max-width: 1100px) {
-    .article-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-}
-
-/* Responsive: 1 column on mobile */
-@media screen and (max-width: 768px) {
-    .article-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    /* Also make the large featured card stack vertically on mobile */
-    .featured-card-large {
-        grid-template-columns: 1fr !important;
-    }
-}
-
-.article-card {
-    background: var(--surface);
-    padding: var(--space-md);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
-}
-
-.article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--gold);
-}
-
-.article-excerpt {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    flex-grow: 1; /* Pushes footer to bottom */
-    margin: var(--space-sm) 0;
-}
-
-.article-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: var(--space-sm);
-    border-top: 1px solid var(--border-light);
-    font-size: 0.85rem;
-}
-
-/* Club Spotlight Cards */
-.clubs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-md);
-    margin-top: var(--space-md);
-}
-
-.club-card {
-    background: var(--primary-green-dark);
-    color: white;
-    padding: var(--space-md);
-    border-radius: 8px;
-    text-align: center;
-}
-
-.club-card h3 { color: var(--gold-light); margin-top: 0; }
-.club-card p { font-size: 0.9rem; opacity: 0.9; }
-.club-card a { 
-    display: inline-block;
-    margin-top: var(--space-sm);
-    color: var(--gold-light);
-    font-weight: 600;
-}
-
-/* Responsive Mobile Fixes */
-@media screen and (max-width: 768px) {
-    .hero-buttons { flex-direction: column; align-items: center; }
-    .homepage-hero { padding: var(--space-lg) var(--space-sm); }
-}
-
-/* ============================================================
-   # DARK MODE (Optional - for future implementation)
-   ============================================================ */
-@media (prefers-color-scheme: dark) {
-  /* Uncomment when ready to implement dark mode */
-  /*
-  :root {
-    --background: #1A1A1A;
-    --surface: #2D2D2D;
-    --text-primary: #E0E0E0;
-    --text-secondary: #B0B0B0;
-    --border: #404040;
-  }
-  */
-}
-
-/* --- Featured Article Refinements --- */
-.featured-section-container {
-    max-width: 1000px; /* Makes it smaller than the full width */
-    margin: var(--space-lg) auto;
-    padding: 0 var(--space-md);
-}
-
-.featured-card-large {
-    border: 2px solid var(--border); /* Adds the requested border */
-    border-radius: 12px; /* Rounded corners */
-    overflow: hidden; /* clips image corners to match border radius */
-    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
-}
-
-.featured-card-large:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--gold);
-}
-
-.featured-image img {
-    width: 50%;
-    height: auto; /* 2. UNIFORM SIZE: Adjust height as needed */
-    object-fit: cover; /* Prevents stretching by cropping to fit */
-    display: block;
-    object-position: center;
-}
-
-.featured-content {
-    padding: 2.5rem; /* 3. FIXES STUCK TEXT: Adds space inside the border */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* --- Article Card Reordering & Grid Styles --- */
-.card-title {
-    margin-bottom: 0.25rem;
-    font-size: 1.4rem;
-}
-
-.article-meta-minimized {
-    margin-bottom: var(--space-sm);
-}
-
-.club-badge-small {
-    font-size: 0.7rem; /* Minimized size */
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-}
-
-/* --- Button Colors --- */
-/* The second button is golden because of the .secondary class */
-.button.secondary {
-    background: var(--gold) !important;
-    color: white !important;
-}
-
-.button.secondary:hover {
-    background: var(--gold-dark) !important;
-}
-
-/* The first button uses your primary green */
-.button:not(.secondary) {
-    background: var(--primary-green);
-}
-
-/* --- Grid Alignment --- */
-.article-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
-}
-
-@media screen and (max-width: 1024px) {
-    .article-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media screen and (max-width: 768px) {
-    .article-grid { grid-template-columns: 1fr; }
 }
