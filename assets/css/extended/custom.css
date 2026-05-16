@@ -113,9 +113,7 @@ main,
 .wrapper,
 .page-header,
 .page,
-article,
 .post,
-.post-single,
 .post-entry,
 .first-entry,
 .entry-content,
@@ -131,9 +129,7 @@ section {
 /* Keep ONLY these elements with solid backgrounds - NO FOOTER OR NAV HERE */
 .club-feature-card,
 .article-card,
-.related-card,
-#google_translate_element,
-#mlb2-40204861 .ml-form-embedWrapper {
+.related-card {
   background: var(--entry) !important;
 }
 
@@ -787,7 +783,7 @@ input[type="submit"]:hover {
 
 /* ============================================================
    # FORMS & NEWSLETTER
-   Input fields, MailerLite overrides, Google Translate
+   Input fields, MailerLite overrides,
    ============================================================ */
 
 /* Form Inputs */
@@ -842,30 +838,6 @@ label {
 #mlb2-40204861 button[type="submit"]:hover {
   background: var(--accent) !important;
   border-color: var(--accent) !important;
-}
-
-/* Google Translate Widget */
-#google_translate_element {
-  background: var(--entry);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-md);
-  border: 2px solid var(--primary);
-  display: inline-block;
-  margin: var(--space-sm) 0;
-  box-shadow: var(--shadow-sm);
-}
-
-#google_translate_element select {
-  background: transparent;
-  border: none;
-  color: var(--primary);
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.25rem;
-}
-
-.goog-te-banner-frame.skiptranslate {
-  display: none !important;
 }
 
 body {
@@ -1212,8 +1184,7 @@ tr:hover {
   
   .nav,
   .footer,
-  .newsletter-signup,
-  #google_translate_element {
+  .newsletter-signup {
     display: none;
   }
   
